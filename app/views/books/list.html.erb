@@ -1,0 +1,35 @@
+<head>
+<style>
+table
+  {
+    border-collapse:collapse;
+    font-family:"Helvetica";
+    color:#686868
+  }
+  table, td, th
+  {
+    border:1px solid #C0C0C0;
+    padding:10px;
+  }
+  th
+  {
+    border-bottom: 3px solid #C0C0C0;
+    text-align:left;
+  }
+</style>
+</head>
+
+<p>
+<table>
+  <tr>
+    <th width=30%><strong>Title</strong></th>
+    <th width=30%><strong>Author</strong></th>
+  </tr>
+  <% Book.read.each do |book| %>
+  <tr>
+    <td><%= book["title"] %></td>
+    <td><%= book["author"] %></td>
+  </tr>
+  <% end %>
+</table>
+</p>
