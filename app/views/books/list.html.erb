@@ -19,17 +19,32 @@ table
 </style>
 </head>
 
+<h1>Esther's Bookstore</h1>
+
+<hr>
+
+<% all_books = Book.read %>
+
 <p>
 <table>
   <tr>
-    <th width=30%><strong>Title</strong></th>
-    <th width=30%><strong>Author</strong></th>
+    <th width=400><strong>Available Titles</strong></th>
+    <th width=200><strong>Average Star Rating</strong></th>
   </tr>
   <% Book.read.each do |book| %>
+  <% book_review = Review.where("book_id" => book.id) %>
   <tr>
-    <td><%= book["title"] %></td>
-    <td><%= book["author"] %></td>
+    <td><%= link_to book["title"], "/books/#{book["id"]}" %></td>
+    <td>
+      <% if book_review.present? %>
+        <%= book_review.average("stars") %>
+        <% else %>
+        No ratings yet.
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
 </p>
+
+
